@@ -420,7 +420,7 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Litecoin ядро</translation>
     </message>
     </context>

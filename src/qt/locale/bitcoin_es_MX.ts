@@ -604,7 +604,7 @@
         <translation>Opciones:</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>nucleo Litecoin</translation>
     </message>
     <message>

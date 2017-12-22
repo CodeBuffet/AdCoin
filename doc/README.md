@@ -1,11 +1,11 @@
-Litecoin Core 0.14.2
+AdCoin 0.14.2
 =====================
 
 Setup
 ---------------------
-Litecoin Core is the original Litecoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Litecoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+AdCoin is the original Litecoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Litecoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Litecoin Core, visit [litecoin.org](https://litecoin.org).
+To download AdCoin, visit [litecoin.org](https://litecoin.org).
 
 Running
 ---------------------

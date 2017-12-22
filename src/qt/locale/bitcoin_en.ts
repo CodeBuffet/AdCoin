@@ -3953,8 +3953,8 @@
     </message>
     <message>
         <location line="-360"/>
-        <source>Litecoin Core</source>
-        <translation type="unfinished">Litecoin Core</translation>
+        <source>AdCoin</source>
+        <translation type="unfinished">AdCoin</translation>
     </message>
     <message>
         <location line="+1"/>

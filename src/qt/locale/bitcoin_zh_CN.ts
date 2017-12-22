@@ -3013,8 +3013,8 @@
         <translation>无法启动HTTP服务，查看日志获取更多信息</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
-        <translation>Litecoin Core</translation>
+        <source>AdCoin</source>
+        <translation>AdCoin</translation>
     </message>
     <message>
         <source>The %s developers</source>

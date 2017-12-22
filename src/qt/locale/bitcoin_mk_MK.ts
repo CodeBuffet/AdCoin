@@ -578,7 +578,7 @@
         <translation>Опции:</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Биткоин Core</translation>
     </message>
     <message>

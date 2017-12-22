@@ -784,7 +784,7 @@
         <translation>Opsionet:</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Berthama Litecoin</translation>
     </message>
     <message>

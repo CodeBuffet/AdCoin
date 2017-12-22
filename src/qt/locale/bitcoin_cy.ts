@@ -484,7 +484,7 @@
         <translation>Opsiynau:</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Craidd Litecoin</translation>
     </message>
     <message>

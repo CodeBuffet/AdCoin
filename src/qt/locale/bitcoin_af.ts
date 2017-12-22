@@ -948,7 +948,7 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Litecoin Kern</translation>
     </message>
     <message>

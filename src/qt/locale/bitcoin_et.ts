@@ -1758,7 +1758,7 @@
         <translation>Tööta taustal ning aktsepteeri käsklusi</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>Litecoini tuumik</translation>
     </message>
     <message>

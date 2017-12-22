@@ -24,7 +24,7 @@ In case you want to build the disk image with `make deploy` (.dmg / optional), y
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
-Build Litecoin Core
+Build AdCoin
 ------------------------
 
 1. Clone the litecoin source code and cd into `litecoin`
@@ -53,7 +53,7 @@ Build Litecoin Core
 Running
 -------
 
-Litecoin Core is now available at `./src/litecoind`
+AdCoin is now available at `./src/litecoind`
 
 Before running, it's recommended you create an RPC configuration file.
 

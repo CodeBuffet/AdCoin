@@ -772,7 +772,7 @@
 </translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
+        <source>AdCoin</source>
         <translation>litecoin core</translation>
     </message>
     <message>
