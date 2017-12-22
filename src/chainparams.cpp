@@ -70,7 +70,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 840000;
+        consensus.nSubsidyHalvingInterval = 600000;
         consensus.BIP34Height = 710000;
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
@@ -107,11 +107,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfb;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xb6;
-        pchMessageStart[3] = 0xdb;
-        nDefaultPort = 9333;
+        pchMessageStart[0] = 0x3d;
+        pchMessageStart[1] = 0x05;
+        pchMessageStart[2] = 0x35;
+        pchMessageStart[3] = 0x77;
+        nDefaultPort = 19499;
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1499175910, 50479, 0x1e0ffff0, 1, 25 * COIN);
@@ -120,8 +120,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x93c2ed969aedded98026e9ee8f2c0c6213329d1f4e3b0df19a53d01378e40cd4"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("getadcoin.com", "node1.getadcoin.com", true));
-        vSeeds.push_back(CDNSSeedData("getadcoin.com", "node2.getadcoin.com", true));
+        vSeeds.push_back(CDNSSeedData("getadcoin.com", "node1.getadcoin.com"));
+        vSeeds.push_back(CDNSSeedData("getadcoin.com", "node2.getadcoin.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
