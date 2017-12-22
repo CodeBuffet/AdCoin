@@ -86,7 +86,8 @@ script:
 - export LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib
 - if [ "$RUN_TESTS" = "true" ]; then make $MAKEJOBS check VERBOSE=1; fi
 - if [ "$RUN_TESTS" = "true" ]; then qa/pull-tester/rpc-tests.py --coverage; fi
-- tar -zcf /build_${HOST}.tar.gz $TRAVIS_BUILD_DIR
+- cd /home/travis
+- tar -czvf build_${HOST}.tar.gz $TRAVIS_BUILD_DIR
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
@@ -95,7 +96,7 @@ deploy:
   api_key:
     secure: WgQxTBbToGZp+vrQqR066/9bZgMf71ri0D/yQ6ZkbJjha/dUzTLZqVGZL2nuVj/dPSBgl9qHn4NnQsCgRurSUJoB75AhYqRy4BcflbIzY422EAQeW9mNZf7JDXCdIr3wTEHbkpWZaqjQ9DhCvR40uQbQhASnoVt4804jCFkTgOBJ3Mo4E+xfBFD/v4nRDKQG+b+T7eevGCGVC5dtO/B3w2u5dNstrsexlwB+mBnSRiKDxBUKm9HB+gmB8F51UaJS7XurrJuCtkOCzLYnXX7cOkTZ8dGTFm04kozC6MeCZaPZ3fmbxwDf6XZtsnlY0MTbVVsLAmw7yLMW2j+Sau+XvFdVZasErUR53p7V1owycSDs+d0Snn1F4qV76z42kJmjGrl786/UWOPpBqMAY0gIz7SxpJcXEEee/GkSASeC25h3GY8AvhM46Hts9B6b6gqZxtWcPHttmCF1aA4lWul3IW0BgGPYyTIoMx2cgRR8ro23b2FMFTlm4+5lyvCnQyQISlfg/xPEZ7dXe+yjCUDXYksuCzT9ow7VOGwLypO1TdUxYduBV5Fnn2W5cmrXgwt4vyI7zQiqIDxTXR31RZT05u5cKe+UQgKjminos5hSGPypACEg70PyWxHAJLQJ+ttMHru4DebTsW6ncrE+Bj6Sv1VyXOGdI3J3werSSE8oQBM=
   file_glob: true
-  file: /build_*.tar.gz
+  file: build_*.tar.gz
   on:
     repo: CodeBuffet/AdCoin
     branch: adcoin-ltc-rebase
