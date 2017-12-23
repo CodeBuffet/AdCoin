@@ -16,14 +16,14 @@
 
 #include <boost/test/unit_test.hpp>
 
-static const std::string strSecret1     ("6uGFQ4DSW7zh1viHZi6iiVT17CncvoaV4MHvGvJKPDaLCdymj87");
-static const std::string strSecret2     ("6vVo7sPkeLTwVdAntrv4Gbnsyr75H8ChD3P5iyHziwaqe8mCYR5");
-static const std::string strSecret1C    ("T3gJYmBuZXsdd65E7NQF88ZmUP2MaUanqnZg9GFS94W7kND4Ebjq");
-static const std::string strSecret2C    ("T986ZKRRdnuuXLeDZuKBRrZW1ujotAncU9WTrFU1n7vMgRW75ZtF");
-static const CBitcoinAddress addr1 ("LiUo6Zn39joYJBzPUhssbDwAywhjFcoHE3");
-static const CBitcoinAddress addr2 ("LZJvLSP5SGKcFS13MHgdrVhpFUbEMB5XVC");
-static const CBitcoinAddress addr1C("Lh2G82Bi33RNuzz4UfSMZbh54jnWHVnmw8");
-static const CBitcoinAddress addr2C("LWegHWHB5rmaF5rgWYt1YN3StapRdnGJfU");
+static const std::string strSecret1     ("6vPUFainWmNG8LePSwVWbo5HvCW1PCX4tXjw1VzcSPKnfE5EoQS");
+static const std::string strSecret2     ("6v7oQe3zTTgF2XUsmjaJn4DXNrTMBJRrSyiXmPYkEgCM1dZ7s8q");
+static const std::string strSecret1C    ("T8eBHMqRtNpqmPi25VWqeaMwfom2gyqiASgVPCyHR3XvXeVePoV9");
+static const std::string strSecret2C    ("T7T1qLYCbnkCujY36Sv1TsCH5THJ4TvhFfLJnvX7qN15KJGmRJuV");
+static const CBitcoinAddress addr1 ("AZUGd3ZQDJC6bKPLzARiLX4tz5Gvbv6nes");
+static const CBitcoinAddress addr2 ("AQJKPYwS7CBqcfzMjXNwMnxn989dcLQbpo");
+static const CBitcoinAddress addr1C("AJzftUANCqiqzvAE3rMPeZiNduxppZAJ54");
+static const CBitcoinAddress addr2C("AaVbdy8XcvNn1GPN4sA1UdMByAjeeX7uBs");
 
 
 static const std::string strAddressBad("Lbi6bpMhSwp2CXkivEeUK9wzyQEFzHDfSr");
@@ -58,6 +58,23 @@ void dumpKeyInfo(uint256 privkey)
 
 
 BOOST_FIXTURE_TEST_SUITE(key_tests, BasicTestingSetup)
+
+std::string string_to_hex(const std::string& input)
+{
+    static const char* const lut = "0123456789ABCDEF";
+    size_t len = input.length();
+
+    std::string output;
+    output.reserve(2 * len);
+    for (size_t i = 0; i < len; ++i)
+    {
+        const unsigned char c = input[i];
+        output.push_back(lut[c >> 4]);
+        output.push_back(lut[c & 15]);
+    }
+    return output;
+}
+
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
@@ -164,26 +181,37 @@ BOOST_AUTO_TEST_CASE(key_test1)
     }
 
     // test deterministic signing
-
     std::vector<unsigned char> detsig, detsigc;
     std::string strMsg = "Very deterministic message";
     uint256 hashMsg = Hash(strMsg.begin(), strMsg.end());
     BOOST_CHECK(key1.Sign(hashMsg, detsig));
     BOOST_CHECK(key1C.Sign(hashMsg, detsigc));
+    // std::string sigStr( detsig.begin(), detsig.end() );
+    // std::cout << "Sig: " << string_to_hex(sigStr) << std::endl;
     BOOST_CHECK(detsig == detsigc);
-    BOOST_CHECK(detsig == ParseHex("304402205dbbddda71772d95ce91cd2d14b592cfbc1dd0aabd6a394b6c2d377bbe59d31d022014ddda21494a4e221f0824f0b8b924c43fa43c0ad57dccdaa11f81a6bd4582f6"));
+    BOOST_CHECK(detsig == ParseHex("3045022100828FFBE6C8448CDC1BB9D951F9973F355B0AD95825DD8576432BA169E49B679702202D4517A17257D171021621224A1978353E5B0E32C1F9433F73068BCD3D0C4689"));
     BOOST_CHECK(key2.Sign(hashMsg, detsig));
     BOOST_CHECK(key2C.Sign(hashMsg, detsigc));
+    // std::string sigStr2( detsig.begin(), detsig.end() );
+    // std::cout << "Sig2: " << string_to_hex(sigStr2) << std::endl;
     BOOST_CHECK(detsig == detsigc);
-    BOOST_CHECK(detsig == ParseHex("3044022052d8a32079c11e79db95af63bb9600c5b04f21a9ca33dc129c2bfa8ac9dc1cd5022061d8ae5e0f6c1a16bde3719c64c2fd70e404b6428ab9a69566962e8771b5944d"));
+    BOOST_CHECK(detsig == ParseHex("3045022100EC77C5F541509E943A37AB82614BD161C9887F8E294DC4B304AEE997E047823C02206CD207B4D50E515BEF28FC75CCDB46CC1A639B3210BFD9C3B92876A836A3A0B1"));
     BOOST_CHECK(key1.SignCompact(hashMsg, detsig));
     BOOST_CHECK(key1C.SignCompact(hashMsg, detsigc));
-    BOOST_CHECK(detsig == ParseHex("1c5dbbddda71772d95ce91cd2d14b592cfbc1dd0aabd6a394b6c2d377bbe59d31d14ddda21494a4e221f0824f0b8b924c43fa43c0ad57dccdaa11f81a6bd4582f6"));
-    BOOST_CHECK(detsigc == ParseHex("205dbbddda71772d95ce91cd2d14b592cfbc1dd0aabd6a394b6c2d377bbe59d31d14ddda21494a4e221f0824f0b8b924c43fa43c0ad57dccdaa11f81a6bd4582f6"));
+    // std::string sigStr3( detsig.begin(), detsig.end() );
+    // std::string sigStr3C( detsigc.begin(), detsigc.end() );
+    // std::cout << "Sig3: " << string_to_hex(sigStr3) << std::endl;
+    // std::cout << "Sig3C: " << string_to_hex(sigStr3C) << std::endl;
+    BOOST_CHECK(detsig == ParseHex("1C828FFBE6C8448CDC1BB9D951F9973F355B0AD95825DD8576432BA169E49B67972D4517A17257D171021621224A1978353E5B0E32C1F9433F73068BCD3D0C4689"));
+    BOOST_CHECK(detsigc == ParseHex("20828FFBE6C8448CDC1BB9D951F9973F355B0AD95825DD8576432BA169E49B67972D4517A17257D171021621224A1978353E5B0E32C1F9433F73068BCD3D0C4689"));
     BOOST_CHECK(key2.SignCompact(hashMsg, detsig));
     BOOST_CHECK(key2C.SignCompact(hashMsg, detsigc));
-    BOOST_CHECK(detsig == ParseHex("1c52d8a32079c11e79db95af63bb9600c5b04f21a9ca33dc129c2bfa8ac9dc1cd561d8ae5e0f6c1a16bde3719c64c2fd70e404b6428ab9a69566962e8771b5944d"));
-    BOOST_CHECK(detsigc == ParseHex("2052d8a32079c11e79db95af63bb9600c5b04f21a9ca33dc129c2bfa8ac9dc1cd561d8ae5e0f6c1a16bde3719c64c2fd70e404b6428ab9a69566962e8771b5944d"));
+    std::string sigStr4( detsig.begin(), detsig.end() );
+    // std::string sigStr4C( detsigc.begin(), detsigc.end() );
+    // std::cout << "Sig4: " << string_to_hex(sigStr4) << std::endl;
+    // std::cout << "Sig4C: " << string_to_hex(sigStr4C) << std::endl;
+    BOOST_CHECK(detsig == ParseHex("1CEC77C5F541509E943A37AB82614BD161C9887F8E294DC4B304AEE997E047823C6CD207B4D50E515BEF28FC75CCDB46CC1A639B3210BFD9C3B92876A836A3A0B1"));
+    BOOST_CHECK(detsigc == ParseHex("20EC77C5F541509E943A37AB82614BD161C9887F8E294DC4B304AEE997E047823C6CD207B4D50E515BEF28FC75CCDB46CC1A639B3210BFD9C3B92876A836A3A0B1"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

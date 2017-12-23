@@ -1,5 +1,9 @@
 *.tar.gz
 
+test
+wallet.dat
+src/wallet.backup
+
 *.exe
 src/litecoin
 src/litecoind
