@@ -1,6 +1,5 @@
 *.tar.gz
 
-test
 wallet.dat
 src/wallet.backup
 
