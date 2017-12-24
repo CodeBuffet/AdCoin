@@ -6,7 +6,7 @@
 
 #include "guiutil.h"
 #include "walletmodel.h"
-
+#include <iostream>
 #include <QUrl>
 
 void URITests::uriTests()
@@ -52,6 +52,8 @@ void URITests::uriTests()
     QVERIFY(rv.label == QString());
 
     QVERIFY(GUIUtil::parseBitcoinURI("adcoin://AXs92pSFd8nss5qhg2rz3oANBe97tLRfWV?message=Wikipedia Example Address", &rv));
+    std::cout << "address: " << rv.address.toUtf8().constData() << std::endl;
+
     QVERIFY(rv.address == QString("AXs92pSFd8nss5qhg2rz3oANBe97tLRfWV"));
     QVERIFY(rv.label == QString());
 
