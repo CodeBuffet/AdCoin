@@ -14,6 +14,7 @@
 #include "univalue.h"
 #include "util.h"
 
+#include <stdio.h>
 #include <QDir>
 #include <QtGlobal>
 
@@ -90,7 +91,7 @@ void RPCNestedTests::rpcNestedTests()
     QVERIFY(result == result2);
 
     RPCConsole::RPCExecuteCommandLine(result, "getblock(getbestblockhash())[tx][0]", &filtered);
-    QVERIFY(result == "97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9");
+    QVERIFY(result == "93c2ed969aedded98026e9ee8f2c0c6213329d1f4e3b0df19a53d01378e40cd4");
     QVERIFY(filtered == "getblock(getbestblockhash())[tx][0]");
 
     RPCConsole::RPCParseCommandLine(result, "importprivkey", false, &filtered);
