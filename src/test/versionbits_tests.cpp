@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE(versionbits_computeblockversion)
     // Check that ComputeBlockVersion will set the appropriate bit correctly
     // on mainnet.
     const Consensus::Params &mainnetParams = Params(CBaseChainParams::MAIN).GetConsensus();
-
+    // ADCOIN TODO: check 8064
     // Use the TESTDUMMY deployment for testing purposes.
     int64_t bit = mainnetParams.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit;
     int64_t nStartTime = mainnetParams.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime;
