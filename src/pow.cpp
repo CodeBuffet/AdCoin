@@ -104,6 +104,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
         return false;
 
     // Check proof of work matches claimed amount
+    printf("CheckProofOfWork target: %ld actual: %ld result: %d\n", bnTarget, UintToArith256(hash), UintToArith256(hash) > bnTarget);
     if (UintToArith256(hash) > bnTarget)
         return false;
 
