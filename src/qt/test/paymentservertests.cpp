@@ -195,7 +195,7 @@ void PaymentServerTests::paymentServerTests()
     // Ensure the request is initialized
     QVERIFY(r.paymentRequest.IsInitialized());
     // Extract address and amount from the request
-    // TODO: create new encoded request for verifyAmount
+    // #ADCOIN TODO: create new encoded request for verifyAmount
     // QList<std::pair<CScript, CAmount> > sendingTos = r.paymentRequest.getPayTo();
     // Q_FOREACH (const PAIRTYPE(CScript, CAmount)& sendingTo, sendingTos) {
     //     CTxDestination dest;
