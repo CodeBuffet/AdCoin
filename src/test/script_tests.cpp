@@ -41,7 +41,7 @@ UniValue
 read_json(const std::string& jsondata)
 {
     UniValue v;
-    printf("JSON %s\n", jsondata);
+    std::cout << "json: " << jsondata.substr(0, 50) << std::endl;
 
     if (!v.read(jsondata) || !v.isArray())
     {
