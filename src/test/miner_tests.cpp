@@ -16,6 +16,10 @@
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include <inttypes.h>
+#include <iostream>
+#include <fstream>
+#include <stdarg.h>  // For va_start, etc.
 
 #include "test/test_bitcoin.h"
 
@@ -32,34 +36,34 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {4, 0xa4ad9f65}, {2, 0x15cf2b27}, {1, 0x037620ac}, {1, 0x700d9c54},
-    {2, 0xce79f74f}, {2, 0x52d9c194}, {1, 0x77bc3efc}, {2, 0xbb62c5e8},
-    {2, 0x83ff997a}, {1, 0x48b984ee}, {1, 0xef925da0}, {2, 0x680d2979},
-    {2, 0x08953af7}, {1, 0x087dd553}, {2, 0x210e2818}, {2, 0xdfffcdef},
-    {1, 0xeea1b209}, {2, 0xba4a8943}, {1, 0xa7333e77}, {1, 0x344f3e2a},
-    {3, 0xd651f08e}, {2, 0xeca3957f}, {2, 0xca35aa49}, {1, 0x6bb2065d},
-    {2, 0x0170ee44}, {1, 0x6e12f4aa}, {2, 0x43f4f4db}, {2, 0x279c1c44},
-    {2, 0xb5a50f10}, {2, 0xb3902841}, {2, 0xd198647e}, {2, 0x6bc40d88},
-    {1, 0x633a9a1c}, {2, 0x9a722ed8}, {2, 0x55580d10}, {1, 0xd65022a1},
-    {2, 0xa12ffcc8}, {1, 0x75a6a9c7}, {2, 0xfb7c80b7}, {1, 0xe8403e6c},
-    {1, 0xe34017a0}, {3, 0x659e177b}, {2, 0xba5c40bf}, {5, 0x022f11ef},
-    {1, 0xa9ab516a}, {5, 0xd0999ed4}, {1, 0x37277cb3}, {1, 0x830f735f},
-    {1, 0xc6e3d947}, {2, 0x824a0c1b}, {1, 0x99962416}, {1, 0x75336f63},
-    {1, 0xaacf0fea}, {1, 0xd6531aec}, {5, 0x7afcf541}, {5, 0x9d6fac0d},
-    {1, 0x4cf5c4df}, {1, 0xabe0f2a0}, {6, 0x4a3dac18}, {2, 0xf265febe},
-    {2, 0x1bc9f23f}, {1, 0xad49ab71}, {1, 0x9f2d8923}, {1, 0x15acb65d},
-    {2, 0xd1cecb52}, {2, 0xf856808b}, {1, 0x0fa96e29}, {1, 0xe063ecbc},
-    {1, 0x78d926c6}, {5, 0x3e38ad35}, {5, 0x73901915}, {1, 0x63424be0},
-    {1, 0x6d6b0a1d}, {2, 0x888ba681}, {2, 0xe96b0714}, {1, 0xb7fcaa55},
-    {2, 0x19c106eb}, {1, 0x5aa13484}, {2, 0x5bf4c2f3}, {2, 0x94d401dd},
-    {1, 0xa9bc23d9}, {1, 0x3a69c375}, {1, 0x56ed2006}, {5, 0x85ba6dbd},
-    {1, 0xfd9b2000}, {1, 0x2b2be19a}, {1, 0xba724468}, {1, 0x717eb6e5},
-    {1, 0x70de86d9}, {1, 0x74e23a42}, {1, 0x49e92832}, {2, 0x6926dbb9},
-    {0, 0x64452497}, {1, 0x54306d6f}, {2, 0x97ebf052}, {2, 0x55198b70},
-    {2, 0x03fe61f0}, {1, 0x98f9e67f}, {1, 0xc0842a09}, {1, 0xdfed39c5},
-    {1, 0x3144223e}, {1, 0xb3d12f84}, {1, 0x7366ceb7}, {5, 0x6240691b},
-    {2, 0xd3529b57}, {1, 0xf4cae3b1}, {1, 0x5b1df222}, {1, 0xa16a5c70},
-    {2, 0xbbccedc6}, {2, 0xfe38d0ef},
+  {4, 74284}, {2, 991522}, {1, 0}, {1, 0},
+  {2, 0}, {2, 0}, {1, 0}, {2, 0},
+  {2,   0}, {1, 0}, {1, 0}, {2, 0},
+  {2, 0}, {1, 0}, {2, 637039}, {2, 0},
+  {1, 0}, {2, 880462}, {1, 0}, {1, 0},
+  {3, 0}, {2, 0}, {2, 0}, {1, 0},
+  {2, 0x0170ee44}, {1, 0x6e12f4aa}, {2, 0x43f4f4db}, {2, 0x279c1c44},
+  {2, 0xb5a50f10}, {2, 0xb3902841}, {2, 0xd198647e}, {2, 0x6bc40d88},
+  {1, 0x633a9a1c}, {2, 0x9a722ed8}, {2, 0x55580d10}, {1, 0xd65022a1},
+  {2, 0xa12ffcc8}, {1, 0x75a6a9c7}, {2, 0xfb7c80b7}, {1, 0xe8403e6c},
+  {1, 0xe34017a0}, {3, 0x659e177b}, {2, 0xba5c40bf}, {5, 0x022f11ef},
+  {1, 0xa9ab516a}, {5, 0xd0999ed4}, {1, 0x37277cb3}, {1, 0x830f735f},
+  {1, 0xc6e3d947}, {2, 0x824a0c1b}, {1, 0x99962416}, {1, 0x75336f63},
+  {1, 0xaacf0fea}, {1, 0xd6531aec}, {5, 0x7afcf541}, {5, 0x9d6fac0d},
+  {1, 0x4cf5c4df}, {1, 0xabe0f2a0}, {6, 0x4a3dac18}, {2, 0xf265febe},
+  {2, 0x1bc9f23f}, {1, 0xad49ab71}, {1, 0x9f2d8923}, {1, 0x15acb65d},
+  {2, 0xd1cecb52}, {2, 0xf856808b}, {1, 0x0fa96e29}, {1, 0xe063ecbc},
+  {1, 0x78d926c6}, {5, 0x3e38ad35}, {5, 0x73901915}, {1, 0x63424be0},
+  {1, 0x6d6b0a1d}, {2, 0x888ba681}, {2, 0xe96b0714}, {1, 0xb7fcaa55},
+  {2, 0x19c106eb}, {1, 0x5aa13484}, {2, 0x5bf4c2f3}, {2, 0x94d401dd},
+  {1, 0xa9bc23d9}, {1, 0x3a69c375}, {1, 0x56ed2006}, {5, 0x85ba6dbd},
+  {1, 0xfd9b2000}, {1, 0x2b2be19a}, {1, 0xba724468}, {1, 0x717eb6e5},
+  {1, 0x70de86d9}, {1, 0x74e23a42}, {1, 0x49e92832}, {2, 0x6926dbb9},
+  {0, 0x64452497}, {1, 0x54306d6f}, {2, 0x97ebf052}, {2, 0x55198b70},
+  {2, 0x03fe61f0}, {1, 0x98f9e67f}, {1, 0xc0842a09}, {1, 0xdfed39c5},
+  {1, 0x3144223e}, {1, 0xb3d12f84}, {1, 0x7366aab7}, {5, 0x6240691b},
+  {2, 0xd3529b57}, {1, 0xf4cae3b1}, {1, 0x5b1df222}, {1, 0xa16a5c70},
+  {2, 0xbbccedc6}, {2, 523521},
 };
 
 CBlockIndex CreateBlockIndex(int nHeight)
@@ -182,6 +186,24 @@ void TestPackageSelection(const CChainParams& chainparams, CScript scriptPubKey,
     BOOST_CHECK(pblocktemplate->block.vtx[8]->GetHash() == hashLowFeeTx2);
 }
 
+std::string string_format(const std::string fmt_str, ...) {
+    int final_n, n = ((int)fmt_str.size()) * 2; /* Reserve two times as much as the length of the fmt_str */
+    std::unique_ptr<char[]> formatted;
+    va_list ap;
+    while(1) {
+        formatted.reset(new char[n]); /* Wrap the plain char array into the unique_ptr */
+        strcpy(&formatted[0], fmt_str.c_str());
+        va_start(ap, fmt_str);
+        final_n = vsnprintf(&formatted[0], n, fmt_str.c_str(), ap);
+        va_end(ap);
+        if (final_n < 0 || final_n >= n)
+            n += abs(final_n - n + 1);
+        else
+            break;
+    }
+    return std::string(formatted.get());
+}
+
 // NOTE: These tests rely on CreateNewBlock doing its own self-validation!
 BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 {
@@ -202,6 +224,12 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 
     // Simple block creation, nothing special yet:
     BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey));
+
+    std::ofstream myfile;
+    myfile.open ("logs_miner_test.txt");
+    myfile << string_format("test: %d", 1);
+    myfile.close();
+
 
     // We can't make transactions until we have inputs
     // Therefore, load 100 blocks :)
@@ -227,15 +255,33 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
             txFirst.push_back(pblock->vtx[0]);
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
+        uint32_t maxTries = 1000000;
+        if(!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+          pblock->nNonce = 1000000;
+          while (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+            ++pblock->nNonce;
+            if(--maxTries == 0) {
+              break;
+            }
+          }
+        }
+
+        std::ofstream myfile;
+        myfile.open ("logs_miner_test.txt", std::ofstream::app);
+        myfile << string_format("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
+        myfile.close();
+        printf("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
+
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         BOOST_CHECK(ProcessNewBlock(chainparams, shared_pblock, true, NULL));
         pblock->hashPrevBlock = pblock->GetHash();
     }
 
     // Just to make sure we can still make simple blocks
+    BOOST_CHECK(false); // so we can see logs
     BOOST_CHECK(pblocktemplate = BlockAssembler(chainparams).CreateNewBlock(scriptPubKey));
 
-    const CAmount BLOCKSUBSIDY = 50*COIN;
+    const CAmount BLOCKSUBSIDY = 25*COIN;
     const CAmount LOWFEE = CENT;
     const CAmount HIGHFEE = COIN;
     const CAmount HIGHERFEE = 4*COIN;
