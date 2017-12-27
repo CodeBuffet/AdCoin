@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Running litecoind 1..."
+mkdir /root/.adcoin/regtest2
+/opt/litecoin/litecoind -rpcport=2301 -port=19336 -datadir=/root/.adcoin/regtest2 &
+sleep 3
+echo "Running litecoind 2..."
+/opt/litecoin/litecoind -rpcport=2300 -port=19335 -addnode=localhost:2301 &
+sleep 3
+echo "Running Stratum pool.."
+. /root/.nvm/nvm.sh && node /opt/stratum-server/main.js
