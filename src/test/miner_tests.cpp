@@ -31,6 +31,7 @@ BOOST_FIXTURE_TEST_SUITE(miner_tests, TestingSetup)
 
 static CFeeRate blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
 
+// ADCOIN TODO: this test is failing, it's because we don't have the right nonces (practically mining)
 static
 struct {
     unsigned char extranonce;
@@ -100,7 +101,7 @@ struct {
   {1, 0xad49ab71},
   {1, 126055},
   {1, 0x15acb65d},
-  {2, 0xd1cecb52},
+  {2, 1632897},
   {2, 47333},
   {1, 410169},
   {1, 328615},
@@ -320,7 +321,6 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     for (unsigned int i = 0; i < sizeof(blockinfo)/sizeof(*blockinfo); ++i)
     {
         CBlock *pblock = &pblocktemplate->block; // pointer for convenience
-        printf("nBits: %d\n", pblock->nBits);
         pblock->nVersion = 1;
         pblock->nTime = chainActive.Tip()->GetMedianTimePast()+1;
         CMutableTransaction txCoinbase(*pblock->vtx[0]);
@@ -337,16 +337,16 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
             txFirst.push_back(pblock->vtx[0]);
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
-        uint32_t maxTries = 1000000;
-        if(!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
-          pblock->nNonce = 1000000;
-          while (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
-            ++pblock->nNonce;
-            if(--maxTries == 0) {
-              break;
-            }
-          }
-        }
+        // uint32_t maxTries = 1000000;
+        // if(!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+        //   pblock->nNonce = 1000000;
+        //   while (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus())) {
+        //     ++pblock->nNonce;
+        //     if(--maxTries == 0) {
+        //       break;
+        //     }
+        //   }
+        // }
 
         std::ofstream myfile;
         myfile.open ("logs_miner_test.txt", std::ofstream::app);
