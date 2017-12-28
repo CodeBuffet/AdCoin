@@ -7,11 +7,18 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh
 ENV NVM_DIR /root/.nvm
 RUN . /root/.nvm/nvm.sh && nvm install v0.10.25
 
+EXPOSE 3032
+EXPOSE 3256
+
 ADD start-simulation /usr/bin/start-simulation
+ADD spendbot /usr/bin/spendbot
 ADD stratum-server /opt/stratum-server
 RUN cd /opt/stratum-server && . /root/.nvm/nvm.sh && npm install
 ADD litecoin.conf /root/.adcoin/adcoin.conf
+ADD litecoin.conf /root/.adcoin/regtest2/adcoin.conf
+ADD wallet_docker.dat /root/.adcoin/regtest/wallet.dat
 RUN mkdir /opt/litecoin
 ADD bin/litecoind /opt/litecoin
 ADD bin/litecoin-cli /opt/litecoin
+
 CMD /usr/bin/start-simulation

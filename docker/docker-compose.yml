@@ -1,0 +1,9 @@
+version: '2'
+services:
+  acc_sim:
+    ports:
+      - "3256:3256"
+      - "3032:3032"
+    build:
+      context: ./
+      dockerfile: MinerSim.Dockerfile
