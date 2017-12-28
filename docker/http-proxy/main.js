@@ -1,10 +1,12 @@
 var http = require('http')
 var forward = require('http-forward')
+var cstamp = require('console-stamp')
 
 if(process.argv.length < 4) {
   console.log("usage: node main.js <target> <port>");
 }
 else {
+  cstamp(console, 'HH:MM:ss.l');
   var server = http.createServer(function (req, res) {
     // Define proxy config params
     req.forward = { target: process.argv[2] }

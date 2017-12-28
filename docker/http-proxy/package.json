@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "console-stamp": "^0.2.6",
     "http-forward": "^0.1.3"
   }
 }
