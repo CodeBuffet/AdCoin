@@ -25,5 +25,6 @@ ADD wallet_docker.dat /root/.adcoin/regtest/wallet.dat
 RUN mkdir /opt/litecoin
 ADD bin/litecoind /opt/litecoin
 ADD bin/litecoin-cli /opt/litecoin
+ENV PATH="/opt/litecoin:${PATH}"
 
 CMD /usr/bin/start-simulation
