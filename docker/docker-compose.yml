@@ -1,6 +1,8 @@
 version: '2'
 services:
   acc_sim:
+    volumes:
+      - "./rpc_debug.log:/rpc_debug.log"
     ports:
       - "3256:3256"
       - "3032:3032"

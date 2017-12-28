@@ -21,7 +21,7 @@ var pool = Stratum.createPool({
     "address": "mi4iBXbBsydtcc5yFmsff2zCFVX4XG7qJc", //Address to where block rewards are given
 
     "rewardRecipients": {
-      
+
     },
 
     "blockRefreshInterval": 1000, //How often to poll RPC daemons for new blocks, in milliseconds
@@ -91,7 +91,7 @@ var pool = Stratum.createPool({
     "daemons": [
         {   //Main daemon instance
             "host": "127.0.0.1",
-            "port": 2300,
+            "port": 2400,
             "user": "litecoinrpc",
             "password": "pickASecurePassword"
         }

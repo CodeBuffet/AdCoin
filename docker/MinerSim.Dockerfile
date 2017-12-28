@@ -12,8 +12,13 @@ EXPOSE 3256
 
 ADD start-simulation /usr/bin/start-simulation
 ADD spendbot /usr/bin/spendbot
+
+ADD http-proxy /opt/http-proxy
+RUN cd /opt/http-proxy && . /root/.nvm/nvm.sh && npm install
+
 ADD stratum-server /opt/stratum-server
 RUN cd /opt/stratum-server && . /root/.nvm/nvm.sh && npm install
+
 ADD litecoin.conf /root/.adcoin/adcoin.conf
 ADD litecoin.conf /root/.adcoin/regtest2/adcoin.conf
 ADD wallet_docker.dat /root/.adcoin/regtest/wallet.dat

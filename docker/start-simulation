@@ -4,6 +4,9 @@ echo "Running litecoind 1..."
 /opt/litecoin/litecoind -rpcport=2300 -port=19335 -addnode=localhost:19336 &
 sleep 3
 
+echo "Running HTTP Debug proxy"
+. /root/.nvm/nvm.sh && node /opt/http-proxy/main.js http://localhost:2300 2400 &> /rpc_debug.log &
+
 blocks_made="/var/blocks_made"
 if [ ! -f "$blocks_made" ]
 then
@@ -17,7 +20,6 @@ fi
 echo "Running litecoind 2..."
 /opt/litecoin/litecoind -rpcport=2301 -port=19336 -addnode=localhost:19335 -datadir=/root/.adcoin/regtest2 &
 sleep 3
-
 
 echo "Running spendbot..."
 /usr/bin/spendbot &
