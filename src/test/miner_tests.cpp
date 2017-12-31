@@ -348,11 +348,11 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         //   }
         // }
 
-        std::ofstream myfile;
-        myfile.open ("logs_miner_test.txt", std::ofstream::app);
-        myfile << string_format("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
-        myfile.close();
-        printf("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
+        // std::ofstream myfile;
+        // myfile.open ("logs_miner_test.txt", std::ofstream::app);
+        // myfile << string_format("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
+        // myfile.close();
+        // printf("i: %d Maxtries left: %" PRIu32 ", final nonce: %" PRIu32 "\n", i, maxTries, pblock->nNonce);
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         BOOST_CHECK(ProcessNewBlock(chainparams, shared_pblock, true, NULL));
