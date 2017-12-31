@@ -79,7 +79,7 @@ public:
         consensus.nPowTargetTimespan = 10 * 60;
         consensus.nPowTargetSpacing = 5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.fPowAllowFakeMining = false;
+        consensus.nPowForceEnableBlocksBeforeHeight = 0;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 6; // 75% of 8
         consensus.nMinerConfirmationWindow = 8; // nPowTargetTimespan / nPowTargetSpacing * 4
@@ -165,7 +165,7 @@ public:
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.fPowAllowFakeMining = false;
+        consensus.nPowForceEnableBlocksBeforeHeight = 0;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
@@ -251,10 +251,10 @@ public:
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in rpc activation tests)
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 10 * 60;
-        consensus.nPowTargetSpacing = 5 * 60;
+        consensus.nPowTargetTimespan = 2 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.fPowAllowFakeMining = false;
+        consensus.nPowForceEnableBlocksBeforeHeight = 101;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 6; // 75% of 8
         consensus.nMinerConfirmationWindow = 8; // nPowTargetTimespan / nPowTargetSpacing * 4
@@ -281,10 +281,14 @@ public:
         nDefaultPort = 19444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1499175910, 0, 0x1e0ffff0, 1, 25 * COIN);
+        genesis = CreateGenesisBlock(1499175910, 50479, 0x1e0ffff0, 1, 25 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // assert(consensus.hashGenesisBlock == uint256S("0x530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9"));
-        // assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
+
+        // Print hashes of genesis block and merkle root
+        // std::cout << genesis.GetHash().GetHex() << "\n";
+        // std::cout << genesis.hashMerkleRoot.GetHex() << "\n";
+        assert(consensus.hashGenesisBlock == uint256S("0x6da2f2ef5b0f62c0717dbbd687826b0e9e6fe08cf0c61c8f40173efadd49a9f9"));
+        assert(genesis.hashMerkleRoot == uint256S("0x93c2ed969aedded98026e9ee8f2c0c6213329d1f4e3b0df19a53d01378e40cd4"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -296,7 +300,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0x530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9"))
+            ( 0, uint256S("0x6da2f2ef5b0f62c0717dbbd687826b0e9e6fe08cf0c61c8f40173efadd49a9f9"))
         };
 
         chainTxData = ChainTxData{

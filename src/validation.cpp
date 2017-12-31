@@ -1147,8 +1147,10 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     }
 
     // Check the header
-    if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+    if(consensusParams.nPowForceEnableBlocksBeforeHeight < chainActive.Height()) {
+      if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
+          return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+    }
 
     return true;
 }
@@ -3099,7 +3101,7 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
     uint256 hash = block.GetHash();
     BlockMap::iterator miSelf = mapBlockIndex.find(hash);
     CBlockIndex *pindex = NULL;
-    if (hash != chainparams.GetConsensus().hashGenesisBlock) {
+    if (chainparams.GetConsensus().nPowForceEnableBlocksBeforeHeight < chainActive.Height() && hash != chainparams.GetConsensus().hashGenesisBlock) {
 
         if (miSelf != mapBlockIndex.end()) {
             // Block header is already known.
@@ -3248,7 +3250,14 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         CValidationState state;
         // Ensure that CheckBlock() passes before calling AcceptBlock, as
         // belt-and-suspenders.
-        bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());
+        bool ret;
+        if(chainparams.GetConsensus().nPowForceEnableBlocksBeforeHeight < chainActive.Height()) {
+          ret = CheckBlock(*pblock, state, chainparams.GetConsensus());
+        }
+        else {
+          ret = true;
+        }
+
         printf("CheckBlock ret: %d\n", ret);
 
         LOCK(cs_main);
