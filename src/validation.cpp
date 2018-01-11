@@ -1146,6 +1146,13 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
+    // Uncomment if want to PoW (for instance to PoW a genesis block for regtest)
+    // while (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams)) {
+    //   block.nNonce++;
+    //   std::cout << "Retry using nonce: " << block.nNonce << std::endl;
+    // }
+    // std::cout << "Done!" << std::endl;
+
     // Check the header
     if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
