@@ -1,5 +1,6 @@
 *.tar.gz
 
+wallet.backup
 wallet.dat
 src/wallet.backup
 
