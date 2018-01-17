@@ -17,6 +17,7 @@ ADD http-proxy /opt/http-proxy
 RUN cd /opt/http-proxy && . /root/.nvm/nvm.sh && npm install
 
 ADD stratum-server /opt/stratum-server
+RUN git clone https://github.com/UNOMP/node-merged-pool.git /opt/stratum-server/node_modules/stratum-pool
 RUN cd /opt/stratum-server && . /root/.nvm/nvm.sh && npm install
 
 ADD litecoin.conf /root/.adcoin/adcoin.conf
