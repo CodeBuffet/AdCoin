@@ -1,6 +1,7 @@
 version: '2'
 services:
   acc_sim:
+    restart: always
     volumes:
       - "./logs:/logs"
     ports:
