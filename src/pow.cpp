@@ -112,6 +112,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     // Most recent algo first
     if (pindexLast->nHeight + 1 >= params.nPowDGWHeight) {
+        // std::cout << "DGW 3 :D" << std::endl;
         return DarkGravityWave(pindexLast, params);
     }
     else {

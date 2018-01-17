@@ -30,10 +30,11 @@
         "url": "https://github.com/KillerByte/node-merged-pool.git"
     },
     "dependencies": {
-        "multi-hashing": "git://github.com/zone117x/node-multi-hashing.git",
+        "unomp-multi-hashing": "*",
         "bignum": "*",
         "base58-native": "*",
-        "async": "*"
+        "async": "*",
+        "redis": "*"
     },
     "engines": {
         "node": ">=0.10"
