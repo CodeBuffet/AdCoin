@@ -25,4 +25,5 @@ sleep 3
 # /usr/bin/spendbot &
 
 echo "Running Stratum pool.."
-. /root/.nvm/nvm.sh && node /opt/stratum-server/main.js
+. /root/.nvm/nvm.sh && node /opt/stratum-server/main.js &
+bash /usr/bin/store_log_info

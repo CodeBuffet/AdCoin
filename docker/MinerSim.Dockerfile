@@ -8,9 +8,11 @@ ENV NVM_DIR /root/.nvm
 RUN . /root/.nvm/nvm.sh && nvm install v0.10.25
 
 EXPOSE 3032
+EXPOSE 3993
 EXPOSE 3256
 
 ADD start-simulation /usr/bin/start-simulation
+ADD store_log_info /usr/bin/store_log_info
 ADD spendbot /usr/bin/spendbot
 
 ADD http-proxy /opt/http-proxy
