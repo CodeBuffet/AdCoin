@@ -250,12 +250,12 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in rpc activation tests)
-        consensus.nPowDGWHeight = 10;
+        consensus.nPowDGWHeight = 1000000;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 60;
         consensus.nPowTargetSpacing = 5 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.fPowNoRetargeting = false;
+        consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fPowNoRetargeting = true;
         consensus.nRuleChangeActivationThreshold = 6; // 75% of 8
         consensus.nMinerConfirmationWindow = 8; // nPowTargetTimespan / nPowTargetSpacing * 4
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
