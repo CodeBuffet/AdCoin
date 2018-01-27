@@ -228,17 +228,20 @@ then
 fi
 echo ${COMMIT}
 
+# Prevent interaction
+export DEBIAN_FRONTEND=noninteractive
+
 # Setup build environment
 if [[ $setup = true ]]
 then
-    sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
+    sudo apt-get install -y ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
     # git clone https://github.com/AdCoin-project/gitian.sigs.ltc.git
     # git clone https://github.com/AdCoin-project/AdCoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
     then
-        sudo apt-get install lxc
+        sudo apt-get install -y lxc
         bin/make-base-vm --suite trusty --arch amd64 --lxc
     else
         bin/make-base-vm --suite trusty --arch amd64
@@ -276,7 +279,7 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-linux.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/AdCoin-*.tar.gz build/out/src/AdCoin-*.tar.gz ../AdCoin-binaries/${VERSION}
+	    mv build/out/litecoin-*.tar.gz build/out/src/litecoin-*.tar.gz ../AdCoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -286,8 +289,8 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-win.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/AdCoin-*-win-unsigned.tar.gz inputs/AdCoin-win-unsigned.tar.gz
-	    mv build/out/AdCoin-*.zip build/out/AdCoin-*.exe ../AdCoin-binaries/${VERSION}
+	    mv build/out/litecoin-*-win-unsigned.tar.gz inputs/litecoin-win-unsigned.tar.gz
+	    mv build/out/litecoin-*.zip build/out/litecoin-*.exe ../litecoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -297,8 +300,8 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-osx.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/AdCoin-*-osx-unsigned.tar.gz inputs/AdCoin-osx-unsigned.tar.gz
-	    mv build/out/AdCoin-*.tar.gz build/out/AdCoin-*.dmg ../AdCoin-binaries/${VERSION}
+	    mv build/out/litecoin-*-osx-unsigned.tar.gz inputs/litecoin-osx-unsigned.tar.gz
+	    mv build/out/litecoin-*.tar.gz build/out/litecoin-*.dmg ../litecoin-binaries/${VERSION}
 	fi
 	popd
 
