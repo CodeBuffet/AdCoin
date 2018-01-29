@@ -499,7 +499,7 @@ For more information about the implementation, see
 BIP113 locktime enforcement soft fork
 -------------------------------------
 
-This release seeks to make mempool-only locktime enforcement using GetMedianTimePast() 
+This release seeks to make mempool-only locktime enforcement using GetMedianTimePast()
 a consensus rule.
 
 Litecoin transactions currently may specify a locktime indicating when
@@ -877,7 +877,7 @@ covered by the txid. This provides several immediate benefits:
 
 Activation for the segwit soft fork is being managed using
 BIP9. At the beginning of the first retarget period after
-segwit's start date of 1 January 2017 miners can update the Litecoin
+segwit's start date of 1 January 2017 miners can update the AdCoin
 client to AdCoin 0.13.2 to signal for segwit support. When a
 super-majority of 75% is reached segwit is activated by optional, and
 if 75% of blocks within a 8,064-block retarget period (about 3.5 days)
@@ -937,7 +937,7 @@ Low-level RPC changes
 Linux ARM builds
 ----------------
 
-Pre-built Linux ARM binaries have been added to the set of uploaded executables. 
+Pre-built Linux ARM binaries have been added to the set of uploaded executables.
 Additional detail on the ARM architecture targeted by each is provided below.
 
 The following extra files can be found in the download directory or torrent:
