@@ -19,7 +19,7 @@ env:
   - CCACHE_COMPRESS=1
   - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
   - SDK_URL=https://bitcoincore.org/depends-sources/sdks
-  - PYTHN_DEBUG=1
+  - PYTHON_DEBUG=1
   - WINEDEBUG=fixme-all
   - LITECOIN_SCRYPT=0
   matrix:
