@@ -275,11 +275,13 @@ then
 	if [[ $linux = true ]]
 	then
       echo ""
-	    echo "Compiling ${VERSION} Linux"
+	    echo "Compiling ${VERSION} Linux2"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit AdCoin=${COMMIT} --url AdCoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-linux.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/litecoin-*.tar.gz build/out/src/litecoin-*.tar.gz ../AdCoin-binaries/${VERSION}
+	    mv build/out/AdCoin-*.tar.gz build/out/src/AdCoin-*.tar.gz ../AdCoin-binaries/${VERSION}
+      echo "doing test move..."
+      mv build/* ../litecoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -287,10 +289,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit AdCoin=${COMMIT} --url AdCoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-win.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/litecoin-*-win-unsigned.tar.gz inputs/litecoin-win-unsigned.tar.gz
-	    mv build/out/litecoin-*.zip build/out/litecoin-*.exe ../litecoin-binaries/${VERSION}
+	    mv build/out/AdCoin-*-win-unsigned.tar.gz inputs/litecoin-win-unsigned.tar.gz
+	    mv build/out/AdCoin-*.zip build/out/AdCoin-*.exe ../litecoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -298,10 +300,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit litecoin=${COMMIT} --url litecoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit AdCoin=${COMMIT} --url AdCoin=${url} ../AdCoin/contrib/gitian-descriptors/gitian-osx.yml
 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../AdCoin/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/litecoin-*-osx-unsigned.tar.gz inputs/litecoin-osx-unsigned.tar.gz
-	    mv build/out/litecoin-*.tar.gz build/out/litecoin-*.dmg ../litecoin-binaries/${VERSION}
+	    mv build/out/AdCoin-*-osx-unsigned.tar.gz inputs/litecoin-osx-unsigned.tar.gz
+	    mv build/out/AdCoin-*.tar.gz build/out/AdCoin-*.dmg ../litecoin-binaries/${VERSION}
 	fi
 	popd
 
