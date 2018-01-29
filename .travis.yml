@@ -19,7 +19,7 @@ env:
   - CCACHE_COMPRESS=1
   - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
   - SDK_URL=https://bitcoincore.org/depends-sources/sdks
-  - PYTHON_DEBUG=1
+  - PYTHN_DEBUG=1
   - WINEDEBUG=fixme-all
   - LITECOIN_SCRYPT=0
   matrix:
@@ -80,7 +80,7 @@ script:
 - "../configure --cache-file=config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || (
   cat config.log && false)"
 - make distdir VERSION=$HOST
-- cd litecoin-$HOST
+- cd AdCoin-$HOST
 - "./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG ||
   ( cat config.log && false)"
 - make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && make $GOAL
