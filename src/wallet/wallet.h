@@ -48,7 +48,7 @@ static const CAmount DEFAULT_TRANSACTION_FEE = 0;
 //! -fallbackfee default
 static const CAmount DEFAULT_FALLBACK_FEE = 2000000;
 //! -mintxfee default
-static const CAmount DEFAULT_TRANSACTION_MINFEE = 100000;
+static const CAmount DEFAULT_TRANSACTION_MINFEE = 0;
 //! minimum recommended increment for BIP 125 replacement txs
 static const CAmount WALLET_INCREMENTAL_RELAY_FEE = 5000;
 //! target minimum change amount
@@ -58,7 +58,7 @@ static const CAmount MIN_FINAL_CHANGE = MIN_CHANGE/2;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -sendfreetransactions
-static const bool DEFAULT_SEND_FREE_TRANSACTIONS = false;
+static const bool DEFAULT_SEND_FREE_TRANSACTIONS = true;
 //! Default for -walletrejectlongchains
 static const bool DEFAULT_WALLET_REJECT_LONG_CHAINS = false;
 //! -txconfirmtarget default
@@ -246,7 +246,7 @@ public:
     bool IsCoinBase() const { return tx->IsCoinBase(); }
 };
 
-/** 
+/**
  * A transaction with a bunch of additional info that only the owner cares about.
  * It includes any unrecorded transactions needed to link it back to the block chain.
  */
@@ -562,7 +562,7 @@ private:
 };
 
 
-/** 
+/**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
  * and provides the ability to create new transactions.
  */
@@ -774,7 +774,7 @@ public:
 
     void GetKeyBirthTimes(std::map<CTxDestination, int64_t> &mapKeyBirth) const;
 
-    /** 
+    /**
      * Increment the next transaction order id
      * @return next transaction order id
      */
@@ -900,7 +900,7 @@ public:
         LOCK(cs_wallet);
         mapRequestCount[hash] = 0;
     };
-    
+
     unsigned int GetKeyPoolSize()
     {
         AssertLockHeld(cs_wallet); // setKeyPool
@@ -929,8 +929,8 @@ public:
 
     //! Verify the wallet database and perform salvage if required
     static bool Verify();
-    
-    /** 
+
+    /**
      * Address book entry changed.
      * @note called with lock cs_wallet held.
      */
@@ -939,7 +939,7 @@ public:
             const std::string &purpose,
             ChangeType status)> NotifyAddressBookChanged;
 
-    /** 
+    /**
      * Wallet transaction added, removed or updated.
      * @note called with lock cs_wallet held.
      */
@@ -990,7 +990,7 @@ public:
 
     /* Generates a new HD master key (will not be activated) */
     CPubKey GenerateNewHDMasterKey();
-    
+
     /* Set the current HD master key (will reset the chain child index counters) */
     bool SetHDMasterKey(const CPubKey& key);
 };
@@ -1021,7 +1021,7 @@ public:
 };
 
 
-/** 
+/**
  * Account information.
  * Stored in wallet with key "acc"+string account name.
  */

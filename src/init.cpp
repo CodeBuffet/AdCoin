@@ -1009,11 +1009,11 @@ bool AppInitParameterInteraction()
             return InitError(AmountErrMsg("minrelaytxfee", GetArg("-minrelaytxfee", "")));
         // High fee check is done afterward in CWallet::ParameterInteraction()
         ::minRelayTxFee = CFeeRate(n);
-    } else if (incrementalRelayFee > ::minRelayTxFee) {
+    }/* else if (incrementalRelayFee > ::minRelayTxFee) {
         // Allow only setting incrementalRelayFee to control both
         ::minRelayTxFee = incrementalRelayFee;
         LogPrintf("Increasing minrelaytxfee to %s to match incrementalrelayfee\n",::minRelayTxFee.ToString());
-    }
+    }*/
 
     // Sanity check argument for min fee for including tx in block
     // TODO: Harmonize which arguments need sanity checking and where that happens
