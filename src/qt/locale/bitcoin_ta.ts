@@ -90,8 +90,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Litecoin</source>
-        <translation>Litecoin</translation>
+        <source>AdCoin</source>
+        <translation>AdCoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -709,7 +709,7 @@
     <name>bitcoin-core</name>
     <message>
         <source>AdCoin</source>
-        <translation>Litecoin மையம்</translation>
+        <translation>AdCoin மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

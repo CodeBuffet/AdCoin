@@ -66,7 +66,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>Litecoin</source>
+        <source>AdCoin</source>
         <translation>AdCoin</translation>
     </message>
     <message>

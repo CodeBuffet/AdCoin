@@ -114,8 +114,8 @@
         <translation>Newid y cyfrinymadrodd a ddefnyddiwyd ar gyfer amgryptio'r waled</translation>
     </message>
     <message>
-        <source>Litecoin</source>
-        <translation>Litecoin</translation>
+        <source>AdCoin</source>
+        <translation>AdCoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>AdCoin</source>
-        <translation>Craidd Litecoin</translation>
+        <translation>Craidd AdCoin</translation>
     </message>
     <message>
         <source>Information</source>
