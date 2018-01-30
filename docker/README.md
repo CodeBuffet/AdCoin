@@ -19,7 +19,7 @@ Additionally, the simulator also contains a spendbot that sends random transacti
 
 ## Get started
 
-- Compile AdCoin for linux (according to the normal build instructions, you can also use a binary version so you dont have to compile yourself) and move the binaries `litecoin-cli` and `litcoind` to `docker/bin`.
+- Compile AdCoin for linux (according to the normal build instructions, you can also use a binary version so you dont have to compile yourself) and move the binaries `adcoin-cli` and `litcoind` to `docker/bin`.
 - Install docker and docker-compose if you haven't already: <https://docs.docker.com/engine/installation/> and <https://docs.docker.com/compose/install/>
 - Now inside the docker directory, run `docker-compose up -d` and wait for the docker VM to build.
 - When the build is done, the image should've automatically started. You can now point any random scrypt miner to the mining simulator. By default there are 2 ports for connecting to the local pool: 3032 and 3256\. For instance, with cpuminer (<https://github.com/pooler/cpuminer>) you'd call: `./minerd -o stratum+tcp://localhost:3256`.

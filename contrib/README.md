@@ -13,7 +13,7 @@ Construct a linear, no-fork, best version of the blockchain.
 
 ### [Qos](/contrib/qos) ###
 
-A Linux bash script that will set up traffic control (tc) to limit the outgoing bandwidth for connections to the Litecoin network. This means one can have an always-on litecoind instance running, and another local litecoind/litecoin-qt instance which connects to this node and receives blocks from it.
+A Linux bash script that will set up traffic control (tc) to limit the outgoing bandwidth for connections to the AdCoin network. This means one can have an always-on adcoind instance running, and another local adcoind/adcoin-qt instance which connects to this node and receives blocks from it.
 
 ### [Seeds](/contrib/seeds) ###
 Utility to generate the pnSeed[] array that is compiled into the client.
@@ -22,8 +22,8 @@ Build Tools and Keys
 ---------------------
 
 ### [Debian](/contrib/debian) ###
-Contains files used to package litecoind/litecoin-qt
-for Debian-based Linux systems. If you compile litecoind/litecoin-qt yourself, there are some useful files here.
+Contains files used to package adcoind/adcoin-qt
+for Debian-based Linux systems. If you compile adcoind/adcoin-qt yourself, there are some useful files here.
 
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
 Notes on getting Gitian builds up and running using KVM.
@@ -35,7 +35,7 @@ PGP keys used for signing AdCoin [Gitian release](/doc/release-process.md) resul
 Scripts and notes for Mac builds. 
 
 ### [RPM](/contrib/rpm) ###
-RPM spec file for building litecoin-core on RPM based distributions
+RPM spec file for building adcoin-core on RPM based distributions
 
 ### [Gitian-build](/contrib/gitian-build.sh) ###
 Script for running full Gitian builds.
@@ -44,7 +44,7 @@ Test and Verify Tools
 ---------------------
 
 ### [TestGen](/contrib/testgen) ###
-Utilities to generate test vectors for the data-driven Litecoin tests.
+Utilities to generate test vectors for the data-driven AdCoin tests.
 
 ### [Verify Binaries](/contrib/verifybinaries) ###
-This script attempts to download and verify the signature file SHA256SUMS.asc from litecoin.org.
+This script attempts to download and verify the signature file SHA256SUMS.asc from adcoin.org.
