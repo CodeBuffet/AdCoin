@@ -8,7 +8,6 @@
 #include "guiutil.h"
 
 #include "chainparams.h"
-
 #include <QResizeEvent>
 #include <QPropertyAnimation>
 
