@@ -75,9 +75,9 @@ public:
         // BIP34 has not activated yet on AdCoin
         consensus.BIP34Height = 100000000;
         consensus.BIP34Hash = uint256S("");
-        consensus.BIP65Height = 25000;
-        consensus.BIP66Height = 25000;
-        consensus.nPowDGWHeight = 25000;
+        consensus.BIP65Height = 26000;
+        consensus.BIP66Height = 26000;
+        consensus.nPowDGWHeight = 26000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 60;
         consensus.nPowTargetSpacing = 5 * 60;
@@ -145,6 +145,8 @@ public:
             (  100, uint256S("0xcf930c3b49f8f0228b1f6f1a428b0ae1b7c10a6f38a54a4caea2db22bbf8b3b8"))
             ( 1000, uint256S("0x3150c2f0c95e4fa05000cc10c1108a4d659c12f924ebc1a2fdbcd6c0beecdfe9"))
             (10000, uint256S("0x15e556de6fb98cd27b161bc628738a136e08c95f45acf610ec6bef3d0bfcbeb4"))
+            (11500, uint256S("0xc6b72e38540e8b542924c66076682a6775f078c57d66da56eed6b7458a684f15"))
+            (23900, uint256S("0x6d35e41be610298a18e64fe5abed01da79714cfa4949672e56062bfe7051fb8b"))
         };
 
         chainTxData = ChainTxData {
