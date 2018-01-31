@@ -15,9 +15,9 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
 BITCOIN_DAEMON_NAME=adcoind
-BITCOIN_GUI_NAME=adcoind-qt
-BITCOIN_CLI_NAME=adcoind-cli
-BITCOIN_TX_NAME=adcoind-tx
+BITCOIN_GUI_NAME=adcoin-qt
+BITCOIN_CLI_NAME=adcoin-cli
+BITCOIN_TX_NAME=adcoin-tx
 
 AC_CANONICAL_HOST
 
