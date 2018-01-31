@@ -75,9 +75,9 @@ public:
         // BIP34 has not activated yet on AdCoin
         consensus.BIP34Height = 100000000;
         consensus.BIP34Hash = uint256S("");
-        consensus.BIP65Height = 26000;
-        consensus.BIP66Height = 26000;
-        consensus.nPowDGWHeight = 26000;
+        consensus.BIP65Height = 27000;
+        consensus.BIP66Height = 27000;
+        consensus.nPowDGWHeight = 27000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 60;
         consensus.nPowTargetSpacing = 5 * 60;
