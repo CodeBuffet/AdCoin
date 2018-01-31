@@ -5,12 +5,12 @@ wallet.dat
 src/wallet.backup
 
 *.exe
-src/litecoin
-src/litecoind
+src/adcoin
+src/adcoind
 src/adcoin-cli
 src/adcoin-tx
-src/test/test_litecoin
-src/test/test_litecoin_fuzzy
+src/test/test_adcoin
+src/test/test_adcoin_fuzzy
 src/qt/test/test_adcoin-qt
 
 # autoreconf
