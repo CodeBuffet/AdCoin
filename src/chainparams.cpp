@@ -75,9 +75,9 @@ public:
         // BIP34 has not activated yet on AdCoin
         consensus.BIP34Height = 100000000;
         consensus.BIP34Hash = uint256S("");
-        consensus.BIP65Height = 25000;
-        consensus.BIP66Height = 25000;
-        consensus.nPowDGWHeight = 25000;
+        consensus.BIP65Height = 26000;
+        consensus.BIP66Height = 26000;
+        consensus.nPowDGWHeight = 26000;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 60;
         consensus.nPowTargetSpacing = 5 * 60;
@@ -100,10 +100,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517919209; // 2018-02-06 12:13:29.000Z
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000006805c7318ce2736c0");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000062c3ecc1ff6606");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x1673fa904a93848eca83d5ca82c7af974511a7e640e22edc2976420744f2e56a"); //1155631
+        consensus.defaultAssumeValid = uint256S("0x15e556de6fb98cd27b161bc628738a136e08c95f45acf610ec6bef3d0bfcbeb4"); //10000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -142,10 +142,19 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  0, uint256S("0x6da2f2ef5b0f62c0717dbbd687826b0e9e6fe08cf0c61c8f40173efadd49a9f9"))
+            (  100, uint256S("0xcf930c3b49f8f0228b1f6f1a428b0ae1b7c10a6f38a54a4caea2db22bbf8b3b8"))
+            ( 1000, uint256S("0x3150c2f0c95e4fa05000cc10c1108a4d659c12f924ebc1a2fdbcd6c0beecdfe9"))
+            (10000, uint256S("0x15e556de6fb98cd27b161bc628738a136e08c95f45acf610ec6bef3d0bfcbeb4"))
+            (11500, uint256S("0xc6b72e38540e8b542924c66076682a6775f078c57d66da56eed6b7458a684f15"))
+            (23900, uint256S("0x6d35e41be610298a18e64fe5abed01da79714cfa4949672e56062bfe7051fb8b"))
         };
 
-        chainTxData = ChainTxData{
+        chainTxData = ChainTxData {
+            // Data as of block bb2dc9d51680e35f40c601eeef4608ff4c009063b705f3d00770748c84851562 (height 23639).
+            1517340338, // * UNIX timestamp of last known number of transactions
+            38868,  // * total number of transactions between genesis and that timestamp
+                    //   (the tx=... number in the SetBestChain debug.log lines)
+            1     // * estimated number of transactions per second after that timestamp
         };
     }
 };
